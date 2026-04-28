@@ -278,6 +278,7 @@
     .project-card.sql:hover::before { background: var(--accent); }
     .project-card.analyse-clustering:hover::before { background: #d4537e; }
     .project-card.analyse-viz:hover::before { background: #1d9e75; }
+    .project-card.sql-analyse:hover::before { background: #2563eb; }
 
     .project-top {
       display: flex;
@@ -485,7 +486,7 @@
   <div class="section-header">
     <h2 class="section-title">Projets</h2>
     <div class="section-line"></div>
-    <span class="section-count">03 projets</span>
+    <span class="section-count">04 projets</span>
   </div>
 
   <div class="projects-grid" id="projects-grid">
@@ -559,8 +560,32 @@
       </div>
     </div>
 
+    <div class="project-card sql-analyse" data-type="sql analyse" style="max-width: 600px;">
+      <div class="project-top">
+        <div class="project-emoji">🏠</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Analyse du marché des assurances habitation — SQL</div>
+      <div class="project-desc">
+        Projet complet de gestion et d'interrogation d'une base de données pour une entreprise d'assurance. Construction du dictionnaire des données, conception du schéma relationnel normalisé (SQL Power Architect), création des tables et chargement de deux fichiers CSV dans un SGBD.
+        <br><br>
+        Rédaction de 12 requêtes SQL progressives : surfaces maximales, cotisation moyenne, classement des départements, nombre de contrats par région, filtres multi-critères. Restitution des résultats via un support de présentation de 10 slides.
+      </div>
+      <div class="project-tags">
+        <span class="tag sql">SQL</span>
+        <span class="tag analyse">Analyse de données</span>
+        <span class="tag tech">PostgreSQL</span>
+        <span class="tag tech">Modélisation BDD</span>
+        <span class="tag tech">Schéma relationnel</span>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<section id="competences">
   <div class="section-header">
     <h2 class="section-title">Compétences</h2>
     <div class="section-line"></div>
@@ -570,6 +595,7 @@
       <div class="skill-group-title">Langages & Outils</div>
       <div class="skill-list">
         <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
         <span class="skill-pill">Excel</span>
       </div>
     </div>
@@ -584,11 +610,12 @@
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Librairies</div>
+      <div class="skill-group-title">Librairies & BDD</div>
       <div class="skill-list">
         <span class="skill-pill">scikit-learn</span>
         <span class="skill-pill">pandas</span>
         <span class="skill-pill">numpy</span>
+        <span class="skill-pill">PostgreSQL</span>
       </div>
     </div>
     <div class="skill-group">
@@ -600,6 +627,8 @@
         <span class="skill-pill">EDA</span>
         <span class="skill-pill">Cross-validation</span>
         <span class="skill-pill">Collecte open data</span>
+        <span class="skill-pill">Modélisation BDD</span>
+        <span class="skill-pill">Schéma relationnel</span>
         <span class="skill-pill">Dashboard</span>
         <span class="skill-pill">Storytelling</span>
       </div>
