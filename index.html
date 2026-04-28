@@ -477,127 +477,32 @@
   <div class="section-header">
     <h2 class="section-title">Projets</h2>
     <div class="section-line"></div>
-    <span class="section-count">07 projets</span>
-  </div>
-
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterProjects('all', this)">Tous</button>
-    <button class="filter-btn" onclick="filterProjects('ml', this)">Machine Learning</button>
-    <button class="filter-btn" onclick="filterProjects('viz', this)">Visualisation</button>
-    <button class="filter-btn" onclick="filterProjects('sql', this)">SQL</button>
+    <span class="section-count">01 projet</span>
   </div>
 
   <div class="projects-grid" id="projects-grid">
 
-    <div class="project-card ml" data-type="ml">
+    <div class="project-card ml" data-type="ml" style="max-width: 600px;">
       <div class="project-top">
-        <div class="project-emoji">🤖</div>
+        <div class="project-emoji">💶</div>
         <div class="project-links">
+          <a href="https://openclassrooms.com/fr/paths/804/projects/1584" class="project-link" target="_blank" title="Voir le projet">↗</a>
           <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
         </div>
       </div>
-      <div class="project-name">Prédiction du churn client</div>
-      <div class="project-desc">Modèle de classification (Random Forest + XGBoost) pour prédire l'attrition clients d'une banque. Accuracy de 87% sur les données de test.</div>
+      <div class="project-name">Détection de faux billets — ONCFM</div>
+      <div class="project-desc">
+        Développement d'une application de machine learning pour l'Organisation Nationale de Lutte Contre le Faux-Monnayage (ONCFM). Le modèle prédit si un billet en euros est authentique ou contrefait à partir de ses caractéristiques physiques (longueur, hauteur, largeur…), sur un jeu de 1 500 billets scannés (1 000 vrais, 500 faux).
+        <br><br>
+        4 algorithmes comparés : <strong>K-means</strong>, <strong>Régression logistique</strong>, <strong>KNN</strong> et <strong>Random Forest</strong>. Livrables : notebook d'analyse complet + script d'application autonome.
+      </div>
       <div class="project-tags">
         <span class="tag ml">Machine Learning</span>
         <span class="tag tech">Python</span>
         <span class="tag tech">scikit-learn</span>
-      </div>
-    </div>
-
-    <div class="project-card viz" data-type="viz">
-      <div class="project-top">
-        <div class="project-emoji">🗺️</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Dashboard ventes européennes</div>
-      <div class="project-desc">Tableau de bord interactif Tableau analysant les ventes par région, catégorie et période. Intégration de cartes choroplèthes et de KPIs dynamiques.</div>
-      <div class="project-tags">
-        <span class="tag viz">Visualisation</span>
-        <span class="tag tech">Tableau</span>
-        <span class="tag tech">Excel</span>
-      </div>
-    </div>
-
-    <div class="project-card sql" data-type="sql">
-      <div class="project-top">
-        <div class="project-emoji">🗄️</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Pipeline données e-commerce</div>
-      <div class="project-desc">Conception d'un schéma en étoile et requêtes analytiques complexes pour analyser le comportement d'achat sur une plateforme e-commerce (PostgreSQL).</div>
-      <div class="project-tags">
-        <span class="tag sql">SQL</span>
-        <span class="tag tech">PostgreSQL</span>
-        <span class="tag tech">dbt</span>
-      </div>
-    </div>
-
-    <div class="project-card ml" data-type="ml">
-      <div class="project-top">
-        <div class="project-emoji">💬</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Analyse de sentiments NLP</div>
-      <div class="project-desc">Modèle BERT fine-tuné pour l'analyse de sentiment sur des avis produits en français. Pipeline complet de preprocessing et déploiement via API FastAPI.</div>
-      <div class="project-tags">
-        <span class="tag ml">Machine Learning</span>
-        <span class="tag tech">Python</span>
-        <span class="tag tech">Transformers</span>
-      </div>
-    </div>
-
-    <div class="project-card viz" data-type="viz">
-      <div class="project-top">
-        <div class="project-emoji">📈</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Exploration données COVID-19</div>
-      <div class="project-desc">Analyse exploratoire et visualisation de l'évolution de la pandémie par pays. Graphiques animés, corrélations et tendances temporelles avec Plotly.</div>
-      <div class="project-tags">
-        <span class="tag viz">Visualisation</span>
-        <span class="tag tech">Python</span>
-        <span class="tag tech">Plotly</span>
-      </div>
-    </div>
-
-    <div class="project-card sql" data-type="sql">
-      <div class="project-top">
-        <div class="project-emoji">👥</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Segmentation RFM clients</div>
-      <div class="project-desc">Segmentation de la base clients d'un retailer via méthode RFM en SQL pur. Identification des segments VIP, à risque et dormants pour ciblage marketing.</div>
-      <div class="project-tags">
-        <span class="tag sql">SQL</span>
-        <span class="tag tech">BigQuery</span>
-        <span class="tag tech">Looker</span>
-      </div>
-    </div>
-
-    <div class="project-card ml" data-type="ml">
-      <div class="project-top">
-        <div class="project-emoji">🏠</div>
-        <div class="project-links">
-          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
-        </div>
-      </div>
-      <div class="project-name">Prédiction prix immobiliers</div>
-      <div class="project-desc">Régression avancée (Ridge, Lasso, Gradient Boosting) pour prédire les prix de l'immobilier. Feature engineering complet, RMSE optimisé via cross-validation.</div>
-      <div class="project-tags">
-        <span class="tag ml">Machine Learning</span>
-        <span class="tag tech">Python</span>
-        <span class="tag tech">pandas</span>
+        <span class="tag tech">Classification</span>
+        <span class="tag tech">K-means</span>
+        <span class="tag tech">Random Forest</span>
       </div>
     </div>
 
@@ -665,19 +570,7 @@
   <p>© 2025 Leo Lestienne — Construit avec HTML & passion pour la data</p>
 </footer>
 
-<script>
-  function filterProjects(type, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.project-card').forEach(card => {
-      if (type === 'all' || card.dataset.type === type) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
-</script>
+
 
 </body>
 </html>
