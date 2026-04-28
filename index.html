@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leo Lestienne — Data Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --border: #e4e2da;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #2563eb;
+      --accent-light: #eff4ff;
+      --accent-muted: #93aeed;
+      --tag-ml: #fdf3e3;
+      --tag-ml-text: #92500a;
+      --tag-viz: #eaf3de;
+      --tag-viz-text: #3b6d11;
+      --tag-sql: #eeedfe;
+      --tag-sql-text: #3c3489;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(247, 246, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      font-family: var(--sans);
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .btn-primary:hover { background: #333; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--text); }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .stat-icon.blue { background: var(--accent-light); }
+    .stat-icon.green { background: #eaf3de; }
+    .stat-icon.amber { background: #faeeda; }
+    .stat-value { font-size: 22px; font-weight: 600; color: var(--text); line-height: 1.2; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* SECTION */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-count {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* FILTER */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--sans);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    /* PROJECT GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: transparent;
+      transition: background 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: #c8c6be;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+    .project-card.ml:hover::before { background: #f59e0b; }
+    .project-card.viz:hover::before { background: #22c55e; }
+    .project-card.sql:hover::before { background: var(--accent); }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .project-emoji {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .project-links { display: flex; gap: 6px; }
+    .project-link {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .project-link:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+    .project-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .tag {
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--mono);
+    }
+    .tag.ml { background: var(--tag-ml); color: var(--tag-ml-text); }
+    .tag.viz { background: var(--tag-viz); color: var(--tag-viz-text); }
+    .tag.sql { background: var(--tag-sql); color: var(--tag-sql-text); }
+    .tag.tech {
+      background: #f1efea;
+      color: var(--muted);
+    }
+    .hidden { display: none !important; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-pill {
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--mono);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      text-align: center;
+    }
+    .contact-box h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    @media (max-width: 768px) {
+      header { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .stat-card { flex: 1; min-width: 140px; }
+      section { padding: 3rem 1.5rem; }
+      .contact-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><span>leo</span>.lestienne</a>
+    <ul class="nav-links">
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Data Portfolio</div>
+    <h1>Transformer les données en <em>insights</em></h1>
+    <p class="hero-desc">
+      Passionné de data science, je construis des pipelines SQL, des modèles ML et des visualisations qui racontent des histoires à partir des données.
+    </p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-primary">Voir les projets</a>
+      <a href="https://github.com/leolestienne" class="btn btn-outline" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-icon blue">📊</div>
+      <div>
+        <div class="stat-value">7+</div>
+        <div class="stat-label">Projets data réalisés</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">🧠</div>
+      <div>
+        <div class="stat-value">ML · SQL · Viz</div>
+        <div class="stat-label">Domaines de spécialisation</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon amber">🚀</div>
+      <div>
+        <div class="stat-value">Python · R · Tableau</div>
+        <div class="stat-label">Stack technique</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="projets">
+  <div class="section-header">
+    <h2 class="section-title">Projets</h2>
+    <div class="section-line"></div>
+    <span class="section-count">07 projets</span>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">Tous</button>
+    <button class="filter-btn" onclick="filterProjects('ml', this)">Machine Learning</button>
+    <button class="filter-btn" onclick="filterProjects('viz', this)">Visualisation</button>
+    <button class="filter-btn" onclick="filterProjects('sql', this)">SQL</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <div class="project-card ml" data-type="ml">
+      <div class="project-top">
+        <div class="project-emoji">🤖</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Prédiction du churn client</div>
+      <div class="project-desc">Modèle de classification (Random Forest + XGBoost) pour prédire l'attrition clients d'une banque. Accuracy de 87% sur les données de test.</div>
+      <div class="project-tags">
+        <span class="tag ml">Machine Learning</span>
+        <span class="tag tech">Python</span>
+        <span class="tag tech">scikit-learn</span>
+      </div>
+    </div>
+
+    <div class="project-card viz" data-type="viz">
+      <div class="project-top">
+        <div class="project-emoji">🗺️</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Dashboard ventes européennes</div>
+      <div class="project-desc">Tableau de bord interactif Tableau analysant les ventes par région, catégorie et période. Intégration de cartes choroplèthes et de KPIs dynamiques.</div>
+      <div class="project-tags">
+        <span class="tag viz">Visualisation</span>
+        <span class="tag tech">Tableau</span>
+        <span class="tag tech">Excel</span>
+      </div>
+    </div>
+
+    <div class="project-card sql" data-type="sql">
+      <div class="project-top">
+        <div class="project-emoji">🗄️</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Pipeline données e-commerce</div>
+      <div class="project-desc">Conception d'un schéma en étoile et requêtes analytiques complexes pour analyser le comportement d'achat sur une plateforme e-commerce (PostgreSQL).</div>
+      <div class="project-tags">
+        <span class="tag sql">SQL</span>
+        <span class="tag tech">PostgreSQL</span>
+        <span class="tag tech">dbt</span>
+      </div>
+    </div>
+
+    <div class="project-card ml" data-type="ml">
+      <div class="project-top">
+        <div class="project-emoji">💬</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Analyse de sentiments NLP</div>
+      <div class="project-desc">Modèle BERT fine-tuné pour l'analyse de sentiment sur des avis produits en français. Pipeline complet de preprocessing et déploiement via API FastAPI.</div>
+      <div class="project-tags">
+        <span class="tag ml">Machine Learning</span>
+        <span class="tag tech">Python</span>
+        <span class="tag tech">Transformers</span>
+      </div>
+    </div>
+
+    <div class="project-card viz" data-type="viz">
+      <div class="project-top">
+        <div class="project-emoji">📈</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Exploration données COVID-19</div>
+      <div class="project-desc">Analyse exploratoire et visualisation de l'évolution de la pandémie par pays. Graphiques animés, corrélations et tendances temporelles avec Plotly.</div>
+      <div class="project-tags">
+        <span class="tag viz">Visualisation</span>
+        <span class="tag tech">Python</span>
+        <span class="tag tech">Plotly</span>
+      </div>
+    </div>
+
+    <div class="project-card sql" data-type="sql">
+      <div class="project-top">
+        <div class="project-emoji">👥</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Segmentation RFM clients</div>
+      <div class="project-desc">Segmentation de la base clients d'un retailer via méthode RFM en SQL pur. Identification des segments VIP, à risque et dormants pour ciblage marketing.</div>
+      <div class="project-tags">
+        <span class="tag sql">SQL</span>
+        <span class="tag tech">BigQuery</span>
+        <span class="tag tech">Looker</span>
+      </div>
+    </div>
+
+    <div class="project-card ml" data-type="ml">
+      <div class="project-top">
+        <div class="project-emoji">🏠</div>
+        <div class="project-links">
+          <a href="https://github.com/leolestienne" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div class="project-name">Prédiction prix immobiliers</div>
+      <div class="project-desc">Régression avancée (Ridge, Lasso, Gradient Boosting) pour prédire les prix de l'immobilier. Feature engineering complet, RMSE optimisé via cross-validation.</div>
+      <div class="project-tags">
+        <span class="tag ml">Machine Learning</span>
+        <span class="tag tech">Python</span>
+        <span class="tag tech">pandas</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="competences">
+  <div class="section-header">
+    <h2 class="section-title">Compétences</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Langages</div>
+      <div class="skill-list">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">R</span>
+        <span class="skill-pill">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Machine Learning</div>
+      <div class="skill-list">
+        <span class="skill-pill">scikit-learn</span>
+        <span class="skill-pill">XGBoost</span>
+        <span class="skill-pill">TensorFlow</span>
+        <span class="skill-pill">Transformers</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Données & BDD</div>
+      <div class="skill-list">
+        <span class="skill-pill">pandas</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">BigQuery</span>
+        <span class="skill-pill">dbt</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Visualisation</div>
+      <div class="skill-list">
+        <span class="skill-pill">Tableau</span>
+        <span class="skill-pill">Plotly</span>
+        <span class="skill-pill">Matplotlib</span>
+        <span class="skill-pill">Seaborn</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h2>Travaillons ensemble</h2>
+    <p>Vous avez un projet data ou une opportunité ? Je suis toujours ouvert aux échanges.</p>
+    <div class="contact-links">
+      <a href="mailto:leo.lestienne.leo@gmail.com" class="btn btn-primary">✉ Envoyer un email</a>
+      <a href="https://github.com/leolestienne" class="btn btn-outline" target="_blank">GitHub ↗</a>
+      <a href="https://linkedin.com/in/leolestienne" class="btn btn-outline" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Leo Lestienne — Construit avec HTML & passion pour la data</p>
+</footer>
+
+<script>
+  function filterProjects(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (type === 'all' || card.dataset.type === type) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
